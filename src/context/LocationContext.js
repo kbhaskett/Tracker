@@ -21,18 +21,18 @@ const setTrackName = dispatch => (trackName) => {
     dispatch({type: 'setTrackName', payload: trackName});
 };
 
-const startRecording = dispatch =>{
-    console.log('startRecording');
-    dispatch({type: 'startRecording'});
+const startRecording = dispatch => () => {
+    dispatch({ type: 'startRecording' });
 };
 
-const stopRecording = dispatch =>{
-    dispatch({type: 'stopRecording'});
+const stopRecording = dispatch => () => {
+    dispatch({ type: 'stopRecording' });
 };
 
-const addLocation = dispatch => (location) => {
+const addLocation = dispatch => (location, recording) => {
     dispatch({type: 'setCurrentLocation', payload: location});
-    dispatch({type: 'addLocation', payload: location});
+    if (recording)
+        dispatch({type: 'addLocation', payload: location});
 };
 
 export const {Context, Provider} = createDataContext(
